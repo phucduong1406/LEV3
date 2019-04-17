@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "935139952964",
+    "firebase_url": "https://lev3-usuow.firebaseio.com",
+    "project_id": "lev3-usuow",
+    "storage_bucket": "lev3-usuow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935139952964:android:bf47d287c91e144f",
+        "android_client_info": {
+          "package_name": "com.phuscduowng.lev3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB8Ma5JM8s-r4KvpeCGgUdutFS87Nr-dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935139952964-aad3sirpuggu5nr5ravg7rr9726cck56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

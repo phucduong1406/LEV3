@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_dict"
+        android:icon="@drawable/ic_dictionary_black"
+        android:title="Dictionary" />
+
+    <item
+        android:id="@+id/navigation_recent"
+        android:icon="@drawable/ic_watch_later_black_24dp"
+        android:title="Recent" />
+
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/ic_star_black"
+        android:title="Favorite" />
+
+    <item
+        android:id="@+id/navigation_topic"
+        android:icon="@drawable/ic_view_agenda_black_24dp"
+        android:title="Topic" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_account_black"
+        android:title="Account" />
+
+</menu>
