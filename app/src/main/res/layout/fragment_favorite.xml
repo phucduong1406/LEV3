@@ -6,7 +6,7 @@
     tools:context=".DictionaryFragment">
 
     <include
-        layout="@layout/app_bar_main"
+        layout="@layout/app_bar_favorite"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
 

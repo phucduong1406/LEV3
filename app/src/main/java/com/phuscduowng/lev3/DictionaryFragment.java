@@ -24,12 +24,14 @@ import java.util.List;
 
 import android.support.v4.app.FragmentTransaction;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 
 public class DictionaryFragment extends Fragment implements DictionaryAdapterListener {
 
     private List<Dictionary> dictionaryList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RVAdapter mAdapter;
+    private ImageView imgFavorite;
 
     DetailFragment detailFragment;
 
@@ -40,6 +42,8 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
     public DictionaryFragment() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,9 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        imgFavorite = view.findViewById(R.id.imgFavorite);
+
 
         detailFragment = new DetailFragment();
 
@@ -81,7 +88,15 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
                 dictionaryList.add(dictionary);
+
+//
+//                if(dictionary.favorite_word) {
+//                    imgFavorite.setImageResource(R.drawable.ic_star_red_24dp);
+//                }
+
+
                 mAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -103,13 +118,24 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
+
         });
 
+
+//        for (int i = 0; i <= dictionaryList.size(); i++) {
+//            if (dictionaryList.get(i).favorite_word) {
+//                imgFavorite.setImageResource(R.drawable.ic_star_red_24dp);
+//            }
+//        }
 
 
         mAdapter = new RVAdapter(getActivity(), dictionaryList);
         mAdapter.setListener(this);
         recyclerView.setAdapter(mAdapter);
+
+
+
     }
 
     @Override
@@ -133,7 +159,7 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
         transaction.replace(R.id.container, fragment);
         if (!isTop)
             transaction.addToBackStack(null);
-//        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
         transaction.commit();
     }
 }
