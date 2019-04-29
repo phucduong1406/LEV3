@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="465dp">
+
+            <ImageView
+                android:id="@+id/imgFlashcards"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/flashcards" />
+
+            <TextView
+                android:id="@+id/txtFlashcardsWord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgFlashcards"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:paddingBottom="3dp"
+                android:text="word"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtFlashcardsPronun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtFlashcardsWord"
+                android:layout_marginLeft="16dp"
+                android:paddingBottom="3dp"
+                android:text="/pronunciation/" />
+
+            <TextView
+                android:id="@+id/txtFlashcardsMean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtFlashcardsPronun"
+                android:layout_marginLeft="16dp"
+                android:text="mean" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

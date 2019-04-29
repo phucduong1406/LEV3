@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".StoryDetailFragment">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabStoryDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:id="@+id/tabReadE"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:text="English"-->
+            <!--tabSelectedTextColor="@android:color/white"-->
+            <!--tabTextColor="@android:color/black"/>-->
+
+
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:id="@+id/tabReadV"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:text="Vietnamese"-->
+            <!--tabSelectedTextColor="@android:color/white"-->
+            <!--tabTextColor="@android:color/black"/>-->
+
+
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:id="@+id/tabReadVocabulary"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:text="Vocabulary"-->
+            <!--tabSelectedTextColor="@android:color/white"-->
+            <!--tabTextColor="@android:color/black"/>-->
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/storyPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

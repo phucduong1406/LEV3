@@ -64,7 +64,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_back_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_library_add_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -74,8 +74,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_arrow_back_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\ASUS" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_listen_icon" />
+                            <entry key="sourceFile" value="C:\Users\ASUS\Desktop\listen_icon.svg" />
                           </map>
                         </option>
                       </PersistentState>

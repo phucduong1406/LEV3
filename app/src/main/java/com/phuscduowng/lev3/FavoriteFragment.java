@@ -1,6 +1,5 @@
 package com.phuscduowng.lev3;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +34,7 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
     private RVAdapter mAdapter;
 
     ImageView menuFavorite;
-    Button btnFlashcards, btnGame;
+    Button btnFlashcards, btnChoose, btnRead, btnListen;
     private Dialog dialog;
 
     DetailFragment detailFragment;
@@ -75,12 +73,16 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
 
                 dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.dialog_favorite);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 //                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
                 dialog.show();
 
 
+
                 btnFlashcards = dialog.findViewById(R.id.btnFlashcards);
-                btnGame = dialog.findViewById(R.id.btnGame);
+                btnChoose = dialog.findViewById(R.id.btnChoose);
+                btnRead = dialog.findViewById(R.id.btnRead);
+                btnListen = dialog.findViewById(R.id.btnListen);
 
                 btnFlashcards.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -92,10 +94,20 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
                     }
                 });
 
-                btnGame.setOnClickListener(new View.OnClickListener() {
+                btnChoose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
+
+                        dialog.dismiss();
+                    }
+                });
+
+                btnRead.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), StoryActivity.class);
+                        startActivity(intent);
 
                         dialog.dismiss();
                     }
