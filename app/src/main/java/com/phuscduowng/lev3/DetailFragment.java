@@ -40,7 +40,7 @@ public class DetailFragment extends Fragment {
         // Required empty public constructor
     }
 
-    //
+
     public static DetailFragment getNewInstance(String value) {
         DetailFragment fragment = new DetailFragment();
         fragment.value = value;

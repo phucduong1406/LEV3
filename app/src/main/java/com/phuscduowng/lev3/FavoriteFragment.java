@@ -11,10 +11,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -172,6 +175,25 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
         mAdapter.setListener(this);
         recyclerView.setAdapter(mAdapter);
 
+
+        final EditText search = view.findViewById(R.id.edit_search_favorite);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterValue(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
 
@@ -198,5 +220,16 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
             transaction.addToBackStack(null);
 //        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
         transaction.commit();
+    }
+
+    // Filter
+    public void filterValue(String value) {
+
+        for (int i = 0; i < mAdapter.getItemCount(); i++) {
+            if (favoriteList.get(i).word.startsWith(value)) {
+                recyclerView.getLayoutManager().scrollToPosition(i);
+                break;
+            }
+        }
     }
 }

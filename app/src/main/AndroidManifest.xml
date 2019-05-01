@@ -25,13 +25,14 @@
         <activity
             android:name=".FlashcardsActivity"
             android:label="Flashcards"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FavoriteTheme"/>
         <activity
             android:name=".StoryActivity"
-            android:label="Reading"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
+            android:theme="@style/FavoriteTheme"
+            android:label="Story"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>

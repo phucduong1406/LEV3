@@ -30,6 +30,7 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
     private List<Dictionary> topicChildList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RVAdapter mAdapter;
+    String value = "";
 
     DetailFragment detailFragment;
 
@@ -40,6 +41,12 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
 
     public TopicChildFragment() {
         // Required empty public constructor
+    }
+
+    public static TopicChildFragment getNewInstance(String value) {
+        TopicChildFragment fragment = new TopicChildFragment();
+        fragment.value = value;
+        return fragment;
     }
 
     @Override
@@ -82,7 +89,11 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
+                assert dictionary != null;
+
+                if (value.toLowerCase().equals(dictionary.topic))
                 topicChildList.add(dictionary);
+
                 mAdapter.notifyDataSetChanged();
             }
 

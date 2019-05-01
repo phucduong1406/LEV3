@@ -41,6 +41,8 @@ public class TopicFragment extends Fragment {
     private List<Topic> topicList;
     private TopicAdapter mAdapter;
 
+    TopicChildFragment topicChildFragment;
+
     public TopicFragment() {
         // Required empty public constructor
     }
@@ -64,9 +66,14 @@ public class TopicFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_topic, container, false);
 
+
+        topicChildFragment = new TopicChildFragment();
+
         recyclerView = view.findViewById(R.id.topic_view);
         topicList = new ArrayList<>();
         mAdapter = new TopicAdapter(getActivity(), topicList);
+
+
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -112,7 +119,6 @@ public class TopicFragment extends Fragment {
 
         MyApplication.getInstance().addToRequestQueue(request);
     }
-
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -188,7 +194,7 @@ public class TopicFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, final int position) {
+        public void onBindViewHolder(final MyViewHolder holder, final int position) {
             final Topic topic = topicList.get(position);
             holder.name.setText(topic.getTitle());
             holder.price.setText(topic.getCount());
@@ -196,12 +202,31 @@ public class TopicFragment extends Fragment {
             Glide.with(context)
                     .load(topic.getImage())
                     .into(holder.thumbnail);
+
+
+            holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadFragment(topicChildFragment.getNewInstance(topic.title), true);
+                    Toast.makeText(getContext(), topic.title, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         @Override
         public int getItemCount() {
             return topicList.size();
         }
+    }
+
+    // Replace fragment Dict
+    private void loadFragment(Fragment fragment, boolean isTop) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        if (!isTop)
+            transaction.addToBackStack(null);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
+        transaction.commit();
     }
 
 }
