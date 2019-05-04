@@ -28,7 +28,6 @@
                 android:background="@drawable/radius_edit_text"
                 android:drawableLeft="@drawable/ic_search_white_24dp"
                 android:drawablePadding="5dp"
-                android:focusable="false"
                 android:hint="search"
                 android:inputType="text"
                 android:paddingLeft="10dp"

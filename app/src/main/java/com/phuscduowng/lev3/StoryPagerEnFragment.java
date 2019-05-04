@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -19,10 +21,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.phuscduowng.lev3.intf.StoryInterface;
 
 public class StoryPagerEnFragment extends Fragment {
 
-    private String value;
+    private String value = "story002";
     private WebView readContent;
 
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Story");
@@ -30,12 +33,13 @@ public class StoryPagerEnFragment extends Fragment {
     public StoryPagerEnFragment() {
         // Required empty public constructor
     }
-//
+
 //    public static StoryPagerEnFragment getNewInstance(String value) {
 //        StoryPagerEnFragment fragment = new StoryPagerEnFragment();
 //        fragment.value = value;
 //        return fragment;
 //    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,6 @@ public class StoryPagerEnFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_story_pager_en, container, false);
     }
 
@@ -59,15 +62,20 @@ public class StoryPagerEnFragment extends Fragment {
 
 
         readContent = view.findViewById(R.id.storyContentEn);
-        WebSettings webSettings = readContent.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+//        WebSettings webSettings = readContent.getSettings();
+//        webSettings.setJavaScriptEnabled(true);
+
 
         // DB
         mData.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Story story = dataSnapshot.getValue(Story.class);
-                readContent.loadDataWithBaseURL(null, story.content_e, "text/html", "utf-8", null);
+
+                if (value.equals(story.id)) {
+                    readContent.loadDataWithBaseURL(null, story.content_e, "text/html", "utf-8", null);
+                    Toast.makeText(getContext(), story.name_v, Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -90,17 +98,20 @@ public class StoryPagerEnFragment extends Fragment {
 
             }
         });
+
+
     }
 
+    public void clickStoryDetail(String s) {
+//        Log.d("s--", "Value frag2: " + value);
+        value = s;
+//        Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 
 }

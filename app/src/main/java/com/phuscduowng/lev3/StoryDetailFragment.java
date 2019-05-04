@@ -8,16 +8,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.phuscduowng.lev3.intf.StoryInterface;
 
 public class StoryDetailFragment extends Fragment {
 
     public String value = "";
     private ViewPager storyPager;
     private TabLayout tabStoryDetail;
+
+    StoryInterface storyInterface;
 
     StoryPagerViFragment storyPagerViFragment;
     StoryPagerEnFragment storyPagerEnFragment;
@@ -67,12 +72,12 @@ public class StoryDetailFragment extends Fragment {
         tabStoryDetail.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(storyPager));
 
 
-        storyPagerViFragment = new StoryPagerViFragment();
-        storyPagerEnFragment = new StoryPagerEnFragment();
-        storyPagerVoFragment = new StoryPagerVoFragment();
+//        storyPagerViFragment = new StoryPagerViFragment();
+//        storyPagerEnFragment = new StoryPagerEnFragment();
+//        storyPagerVoFragment = new StoryPagerVoFragment();
 
 
-        Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
 
 
 
@@ -82,7 +87,14 @@ public class StoryDetailFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof StoryInterface ){
+            storyInterface = (StoryInterface ) context;
+        } else {
+//            throw new RuntimException(context.toString() + " must implement StoryInterface");
+        }
 
+        storyInterface.onDataStory(value);
+        Log.d("s--", "Value frag1: " + value);
     }
 
     @Override
@@ -92,13 +104,13 @@ public class StoryDetailFragment extends Fragment {
     }
 
 
-    // Replace fragment Dict
-    private void loadFragment(Fragment fragment, boolean isTop) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_read, fragment);
-        if (!isTop)
-            transaction.addToBackStack(null);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
-        transaction.commit();
-    }
+//    // Replace fragment Dict
+//    private void loadFragment(Fragment fragment, boolean isTop) {
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.replace(R.id.container_read, fragment);
+//        if (!isTop)
+//            transaction.addToBackStack(null);
+//        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
+//        transaction.commit();
+//    }
 }

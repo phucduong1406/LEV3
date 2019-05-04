@@ -31,7 +31,9 @@ public class StoryFragment extends Fragment implements DictionaryAdapterListener
     private StoryAdapter mAdapter;
 
     StoryDetailFragment storyDetailFragment;
-    // Lấy toàn bộ dữ liệu trong Dictionary
+    StoryPagerEnFragment storyPagerEnFragment;
+
+    // Lấy toàn bộ dữ liệu trong Story
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Story");
 
     public StoryFragment() {
@@ -55,7 +57,7 @@ public class StoryFragment extends Fragment implements DictionaryAdapterListener
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+//        storyPagerEnFragment = new StoryPagerEnFragment();
         storyDetailFragment = new StoryDetailFragment();
 
         // Lookup the recyclerview in activity layout
@@ -131,6 +133,7 @@ public class StoryFragment extends Fragment implements DictionaryAdapterListener
     @Override
     public void onItemClick(String value) {
         loadFragment(storyDetailFragment.getNewInstance(value), true);
+//        loadFragment(storyPagerEnFragment.getNewInstance("story002"), true);
     }
 
 

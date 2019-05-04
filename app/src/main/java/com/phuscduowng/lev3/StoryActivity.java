@@ -4,8 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
-public class StoryActivity extends AppCompatActivity {
+import com.phuscduowng.lev3.intf.StoryInterface;
+
+public class StoryActivity extends AppCompatActivity implements StoryInterface {
 
     StoryFragment storyFragment;
     StoryDetailFragment storyDetailFragment;
@@ -33,4 +36,18 @@ public class StoryActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onDataStory(String value) {
+//        Log.d("s--","Value actvt: " + value);
+
+        StoryPagerEnFragment storyPagerEnFragment = new StoryPagerEnFragment();
+
+        storyPagerEnFragment.clickStoryDetail(value);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("data", "From Activity");
+        storyPagerEnFragment.setArguments(bundle);
+
+    }
 }

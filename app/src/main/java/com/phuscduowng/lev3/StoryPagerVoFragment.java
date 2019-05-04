@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StoryPagerVoFragment extends Fragment {
 
-    private String value;
+    private String value = "story002";
     private WebView readContent;
 
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Story");
@@ -61,6 +61,7 @@ public class StoryPagerVoFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Story story = dataSnapshot.getValue(Story.class);
+                if (value.equals(story.id))
                 readContent.loadDataWithBaseURL(null, story.vocabulary, "text/html", "utf-8", null);
             }
 

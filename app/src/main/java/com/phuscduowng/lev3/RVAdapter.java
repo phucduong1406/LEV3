@@ -54,7 +54,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
             pronun.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, word.getText(),Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, word.getText(),Toast.LENGTH_SHORT).show();
                 }
             });
 
