@@ -2,10 +2,12 @@ package com.phuscduowng.lev3;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -23,20 +25,23 @@ import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.support.v4.app.FragmentTransaction;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class DictionaryFragment extends Fragment implements DictionaryAdapterListener {
 
     private List<Dictionary> dictionaryList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RVAdapter mAdapter;
-    private ImageView imgFavorite;
+    private ImageView imgFavorite, imgPronun, menuRecent;
 
     DetailFragment detailFragment;
+
+
 
 
     // Lấy toàn bộ dữ liệu trong Dictionary
@@ -64,7 +69,9 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        imgFavorite = view.findViewById(R.id.imgFavorite);
+        imgFavorite = view.findViewById(R.id.imgDictFavorite);
+        imgPronun = view.findViewById(R.id.imgDictPronun);
+        menuRecent = view.findViewById(R.id.menuRecent);
 
 
         detailFragment = new DetailFragment();
@@ -89,17 +96,9 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
         mData.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
+                final Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
                 dictionaryList.add(dictionary);
-
-//
-//                if(dictionary.favorite_word) {
-//                    imgFavorite.setImageResource(R.drawable.ic_star_red_24dp);
-//                }
-
-
                 mAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -139,6 +138,18 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
 
 
 
+
+
+
+        menuRecent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new RecentFragment();
+                loadFragment(fragment, true);
+            }
+        });
+
+
         /**
          ** Search: Filter text
          **/
@@ -161,6 +172,8 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
             }
         });
 
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));  // Adding RecyclerView Divider / Separator
+
     }
 
     @Override
@@ -174,8 +187,10 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
     }
 
     @Override
-    public void onItemClick(String name) {
+    public void onItemClick(final String name) {
         loadFragment(detailFragment.getNewInstance(name), true);
+
+        mData.child(name).child("recent_word").setValue(true);
     }
 
     // Replace fragment Dict
@@ -199,4 +214,5 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
             }
         }
     }
+
 }

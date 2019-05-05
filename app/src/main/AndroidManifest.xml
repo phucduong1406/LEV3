@@ -16,23 +16,35 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".FlashcardsActivity"
+            android:label="Flashcards"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FavoriteTheme" />
+        <activity
+            android:name=".StoryActivity"
+            android:label="Story"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FavoriteTheme" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".SigninActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".FlashcardsActivity"
-            android:label="Flashcards"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/FavoriteTheme"/>
-        <activity
-            android:name=".StoryActivity"
-            android:theme="@style/FavoriteTheme"
-            android:label="Story"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".ResetPassActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

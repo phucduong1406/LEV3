@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -37,7 +38,7 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
     private RVAdapter mAdapter;
 
     ImageView menuFavorite;
-    Button btnFlashcards, btnChoose, btnRead, btnListen;
+    Button btnFlashcards, btnChoose, btnListen;
     private Dialog dialog;
 
     DetailFragment detailFragment;
@@ -84,7 +85,6 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
 
                 btnFlashcards = dialog.findViewById(R.id.btnFlashcards);
                 btnChoose = dialog.findViewById(R.id.btnChoose);
-                btnRead = dialog.findViewById(R.id.btnRead);
                 btnListen = dialog.findViewById(R.id.btnListen);
 
                 btnFlashcards.setOnClickListener(new View.OnClickListener() {
@@ -106,15 +106,6 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
                     }
                 });
 
-                btnRead.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), StoryActivity.class);
-                        startActivity(intent);
-
-                        dialog.dismiss();
-                    }
-                });
             }
         });
 
@@ -194,6 +185,8 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
             }
         });
 
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));  // Adding RecyclerView Divider / Separator
     }
 
 

@@ -1,6 +1,7 @@
 package com.phuscduowng.lev3;
 
 import android.animation.ArgbEvaluator;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FlashcardsActivity extends AppCompatActivity {
 
@@ -26,6 +28,9 @@ public class FlashcardsActivity extends AppCompatActivity {
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Dictionary");
+
+    TextToSpeech toSpeech;
+    private static final int REQUEST_CODE = 111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,7 @@ public class FlashcardsActivity extends AppCompatActivity {
         pagerFlashcards.setPadding(130, 0, 130,0);
 
         Integer[] color_temp = {
-                getResources().getColor(R.color.colorAccent)
+                getResources().getColor(R.color.colorWhite)
         };
         color = color_temp;
 
@@ -84,6 +89,26 @@ public class FlashcardsActivity extends AppCompatActivity {
                 } else {
                     pagerFlashcards.setBackgroundColor(color[color.length - 1]);
                 }
+
+
+                final String s = flashcardsList.get(i).getWord();
+
+                toSpeech = new TextToSpeech(FlashcardsActivity.this, new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int i) {
+                        if (i != TextToSpeech.ERROR) {
+
+                                /*if (flagLang == 0) {
+                                    toSpeech.setLanguage(Locale.ENGLISH);
+                                } else if (flagLang == 1) {
+                                    toSpeech.setLanguage(Locale.forLanguageTag("vi-VN"));
+                                }*/
+
+                            toSpeech.setLanguage(Locale.ENGLISH);
+                            toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }
+                });
             }
 
             @Override

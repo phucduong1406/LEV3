@@ -28,7 +28,7 @@ public class StoryActivity extends AppCompatActivity implements StoryInterface {
     private void loadFragment(Fragment fragment, boolean isTop) {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_read, fragment);
+        transaction.replace(R.id.container, fragment);
         if (!isTop)
             transaction.addToBackStack(null);
 //        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn

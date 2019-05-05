@@ -208,7 +208,7 @@ public class TopicFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     loadFragment(topicChildFragment.getNewInstance(topic.title), true);
-                    Toast.makeText(getContext(), topic.title, Toast.LENGTH_SHORT).show();
+                   
                 }
             });
         }

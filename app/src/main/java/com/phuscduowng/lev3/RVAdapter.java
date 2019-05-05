@@ -1,6 +1,7 @@
 package com.phuscduowng.lev3;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 
 import java.util.List;
+import java.util.Locale;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
@@ -21,6 +22,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     private List<Dictionary> dictionaryList;
     private LayoutInflater mLayoutInflater;
     private Context mContext;
+
+    TextToSpeech toSpeech;
+    private static final int REQUEST_CODE = 111;
 
     public void setListener(DictionaryAdapterListener listener) {
         this.listener = listener;
@@ -47,16 +51,31 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
             word = itemView.findViewById(R.id.txtWord);
             mean = itemView.findViewById(R.id.txtMean);
-            pronun = itemView.findViewById(R.id.imgPronun);
-            isFavorite = itemView.findViewById(R.id.imgFavorite);
+            pronun = itemView.findViewById(R.id.imgDictPronun);
+            isFavorite = itemView.findViewById(R.id.imgDictFavorite);
 
 
             pronun.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 //                    Toast.makeText(mContext, word.getText(),Toast.LENGTH_SHORT).show();
+
+                    final String s = word.getText().toString();
+                    toSpeech = new TextToSpeech(mContext, new TextToSpeech.OnInitListener() {
+                        @Override
+                        public void onInit(int i) {
+                            if (i != TextToSpeech.ERROR) {
+
+                                toSpeech.setLanguage(Locale.ENGLISH);
+                                toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+                            }
+                        }
+                    });
+
                 }
             });
+
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +107,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         final Dictionary dictionary = dictionaryList.get(position);
         viewHolder.word.setText(dictionary.getWord());
         viewHolder.mean.setText(dictionary.getMean());
+
+        if(dictionary.favorite_word) {
+            viewHolder.isFavorite.setImageResource(R.drawable.ic_star_red_24dp);
+        }
 
 
 //        viewHolder.bind(dictionary);

@@ -65,6 +65,9 @@ public class StoryPagerEnFragment extends Fragment {
 //        WebSettings webSettings = readContent.getSettings();
 //        webSettings.setJavaScriptEnabled(true);
 
+//        value = getArguments().getString("data");
+//        Log.d("s--", "onViewCreated: " + value);
+//        if (value == null) value = "story002";
 
         // DB
         mData.addChildEventListener(new ChildEventListener() {
@@ -74,7 +77,6 @@ public class StoryPagerEnFragment extends Fragment {
 
                 if (value.equals(story.id)) {
                     readContent.loadDataWithBaseURL(null, story.content_e, "text/html", "utf-8", null);
-                    Toast.makeText(getContext(), story.name_v, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -103,7 +105,7 @@ public class StoryPagerEnFragment extends Fragment {
     }
 
     public void clickStoryDetail(String s) {
-//        Log.d("s--", "Value frag2: " + value);
+        Log.d("s--", "Value frag2: " + value);
         value = s;
 //        Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
     }

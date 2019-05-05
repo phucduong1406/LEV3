@@ -6,13 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.phuscduowng.lev3.intf.StoryInterface;
 
@@ -23,6 +21,7 @@ public class StoryDetailFragment extends Fragment {
     private TabLayout tabStoryDetail;
 
     StoryInterface storyInterface;
+
 
     StoryPagerViFragment storyPagerViFragment;
     StoryPagerEnFragment storyPagerEnFragment;
@@ -90,8 +89,9 @@ public class StoryDetailFragment extends Fragment {
         if (context instanceof StoryInterface ){
             storyInterface = (StoryInterface ) context;
         } else {
-//            throw new RuntimException(context.toString() + " must implement StoryInterface");
+            throw new RuntimeException(context.toString() + " must implement StoryInterface");
         }
+
 
         storyInterface.onDataStory(value);
         Log.d("s--", "Value frag1: " + value);

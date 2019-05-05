@@ -4,26 +4,26 @@
     <item
         android:id="@+id/navigation_dict"
         android:icon="@drawable/ic_dictionary_black"
-        android:title="Dictionary" />
-
-    <item
-        android:id="@+id/navigation_recent"
-        android:icon="@drawable/ic_watch_later_black_24dp"
-        android:title="Recent" />
+        android:title="@string/dictionary" />
 
     <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_star_black"
-        android:title="Favorite" />
+        android:title="@string/favorite" />
+
+    <item
+        android:id="@+id/navigation_story"
+        android:icon="@drawable/ic_icon_story"
+        android:title="@string/story" />
 
     <item
         android:id="@+id/navigation_topic"
         android:icon="@drawable/ic_view_agenda_black_24dp"
-        android:title="Topic" />
+        android:title="@string/topic" />
 
     <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_account_black"
-        android:title="Account" />
+        android:title="@string/account" />
 
 </menu>

@@ -7,15 +7,15 @@
 
 
     <include
-        layout="@layout/app_bar_main"
+        layout="@layout/app_bar_dictionary"
         android:layout_width="match_parent"
-        android:layout_height="60dp" />
+        android:layout_height="45dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/dictionary_item" />
 

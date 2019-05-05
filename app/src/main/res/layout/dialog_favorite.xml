@@ -39,7 +39,7 @@
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="Flashcards"
+                android:text="@string/flashcards"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="#111"
                 android:textSize="16sp" />
@@ -54,25 +54,25 @@
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="Test"
+                android:text="@string/test"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#111"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnRead"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_read_icon"
-                android:drawablePadding="16dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:text="Story"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textColor="#111"
-                android:textSize="16sp" />
+            <!--<Button-->
+                <!--android:id="@+id/btnRead"-->
+                <!--style="@style/Base.Widget.AppCompat.Button.Borderless"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:drawableLeft="@drawable/ic_read_icon"-->
+                <!--android:drawablePadding="16dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:text="Story"-->
+                <!--android:textAppearance="@style/TextAppearance.AppCompat"-->
+                <!--android:textColor="#111"-->
+                <!--android:textSize="16sp" />-->
 
             <Button
                 android:id="@+id/btnListen"
@@ -81,11 +81,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_listen_icon"
+                android:drawableStart="@drawable/ic_listen_icon"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="Listen"
+                android:text="@string/listen"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#111"
                 android:textSize="16sp" />

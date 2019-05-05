@@ -1,23 +1,16 @@
 package com.phuscduowng.lev3;
 
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.phuscduowng.lev3.intf.StoryInterface;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements StoryInterface {
 
     DictionaryFragment dictFragment;
     DetailFragment detailFragment;
@@ -25,8 +18,11 @@ public class MainActivity extends AppCompatActivity {
     FavoriteFragment favoriteFragment;
     TopicFragment topicFragment;
 //    EmptyFragment emptyFragment;
-//
 
+    StoryFragment storyFragment;
+    StoryDetailFragment storyDetailFragment;
+    StoryPagerEnFragment storyPagerEnFragment;
+    StoryPagerViFragment storyPagerViFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         detailFragment = new DetailFragment();
         recentFragment = new RecentFragment();
         topicFragment = new TopicFragment();
+
+        storyFragment = new StoryFragment();
+        storyDetailFragment = new StoryDetailFragment();
 
         loadFragment(dictFragment, true);
 
@@ -59,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new DictionaryFragment();
                     loadFragment(fragment, true);
                     return true;
-                case R.id.navigation_recent:
-                    fragment = new RecentFragment();
-                    loadFragment(fragment, true);
-                    return true;
                 case R.id.navigation_favorite:
                     fragment = new FavoriteFragment();
+                    loadFragment(fragment, true);
+                    return true;
+                case R.id.navigation_story:
+                    fragment = new StoryFragment();
                     loadFragment(fragment, true);
                     return true;
                 case R.id.navigation_topic:
@@ -72,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(fragment, true);
                     return true;
                 case R.id.navigation_account:
-
+                    fragment = new AccountFragment();
+                    loadFragment(fragment, true);
                     return true;
             }
             return false;
@@ -87,9 +87,23 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.container, fragment);
         if (!isTop)
             transaction.addToBackStack(null);
-//        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);  //chuyển giữa các fragment đẹp hơn
         transaction.commit();
     }
 
+    @Override
+    public void onDataStory(String value) {
+//        Log.d("s--","Value actvt: " + value);
+
+        StoryPagerEnFragment storyPagerEnFragment = new StoryPagerEnFragment();
+
+        storyPagerEnFragment.clickStoryDetail(value);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("data", "From Activity");
+        storyPagerEnFragment.setArguments(bundle);
+
+    }
 
 }

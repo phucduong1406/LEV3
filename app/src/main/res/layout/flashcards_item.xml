@@ -10,6 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:shadowColor="#000"
+        android:shadowDx="20"
+        android:shadowDy="40"
+        android:shadowRadius="50"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
@@ -33,8 +37,19 @@
                 android:ellipsize="end"
                 android:paddingBottom="3dp"
                 android:text="word"
-                android:textSize="20sp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgFlashcardsPronun"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/txtFlashcardsWord"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="8dp"
+                android:layout_toEndOf="@+id/txtFlashcardsWord"
+                app:srcCompat="@drawable/ic_volume_up" />
 
             <TextView
                 android:id="@+id/txtFlashcardsPronun"
