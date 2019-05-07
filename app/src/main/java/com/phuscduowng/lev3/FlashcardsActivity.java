@@ -91,24 +91,24 @@ public class FlashcardsActivity extends AppCompatActivity {
                 }
 
 
-                final String s = flashcardsList.get(i).getWord();
-
-                toSpeech = new TextToSpeech(FlashcardsActivity.this, new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int i) {
-                        if (i != TextToSpeech.ERROR) {
-
-                                /*if (flagLang == 0) {
-                                    toSpeech.setLanguage(Locale.ENGLISH);
-                                } else if (flagLang == 1) {
-                                    toSpeech.setLanguage(Locale.forLanguageTag("vi-VN"));
-                                }*/
-
-                            toSpeech.setLanguage(Locale.ENGLISH);
-                            toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
-                        }
-                    }
-                });
+//                final String s = flashcardsList.get(i).getWord();
+//
+//                toSpeech = new TextToSpeech(FlashcardsActivity.this, new TextToSpeech.OnInitListener() {
+//                    @Override
+//                    public void onInit(int i) {
+//                        if (i != TextToSpeech.ERROR) {
+//
+//                                /*if (flagLang == 0) {
+//                                    toSpeech.setLanguage(Locale.ENGLISH);
+//                                } else if (flagLang == 1) {
+//                                    toSpeech.setLanguage(Locale.forLanguageTag("vi-VN"));
+//                                }*/
+//
+//                            toSpeech.setLanguage(Locale.ENGLISH);
+//                            toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+//                        }
+//                    }
+//                });
             }
 
             @Override

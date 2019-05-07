@@ -4,15 +4,12 @@ import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -73,12 +70,6 @@ public class FlashcardsAdapter extends PagerAdapter {
                     @Override
                     public void onInit(int i) {
                         if (i != TextToSpeech.ERROR) {
-
-                                /*if (flagLang == 0) {
-                                    toSpeech.setLanguage(Locale.ENGLISH);
-                                } else if (flagLang == 1) {
-                                    toSpeech.setLanguage(Locale.forLanguageTag("vi-VN"));
-                                }*/
 
                             toSpeech.setLanguage(Locale.ENGLISH);
                             toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);

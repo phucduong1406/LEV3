@@ -174,7 +174,7 @@ public class TopicFragment extends Fragment {
             public MyViewHolder(View view) {
                 super(view);
                 name = view.findViewById(R.id.title);
-                price = view.findViewById(R.id.count);
+//                price = view.findViewById(R.id.count);
                 thumbnail = view.findViewById(R.id.thumbnail);
             }
         }

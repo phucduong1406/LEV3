@@ -65,7 +65,7 @@
             android:layout_width="fill_parent"
             android:layout_height="36dp"
             android:layout_marginTop="20dip"
-            android:background="@drawable/button_bg"
+            android:background="@drawable/bg_button"
             android:text="@string/btn_reset_password"
             android:textColor="@android:color/white" />
 

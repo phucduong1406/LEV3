@@ -100,7 +100,8 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
                 btnChoose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(getActivity(), TestActivity.class);
+                        startActivity(intent);
 
                         dialog.dismiss();
                     }
