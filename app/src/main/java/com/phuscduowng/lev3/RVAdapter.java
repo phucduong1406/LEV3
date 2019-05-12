@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     private List<Dictionary> dictionaryList;
     private LayoutInflater mLayoutInflater;
     private Context mContext;
+
 
     TextToSpeech toSpeech;
     private static final int REQUEST_CODE = 111;
@@ -43,6 +45,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
         public TextView word, mean;
         public ImageView pronun, isFavorite;
+        LottieAnimationView pronun2;
 
         private Context context;
 
@@ -51,15 +54,34 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
             word = itemView.findViewById(R.id.txtWord);
             mean = itemView.findViewById(R.id.txtMean);
-            pronun = itemView.findViewById(R.id.imgDictPronun);
+//            pronun = itemView.findViewById(R.id.imgDictPronun);
+            pronun2 = itemView.findViewById(R.id.imgDictPronun2);
             isFavorite = itemView.findViewById(R.id.imgDictFavorite);
 
 
-            pronun.setOnClickListener(new View.OnClickListener() {
+//            pronun.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    Toast.makeText(mContext, word.getText(),Toast.LENGTH_SHORT).show();
+//
+//                    final String s = word.getText().toString();
+//                    toSpeech = new TextToSpeech(mContext, new TextToSpeech.OnInitListener() {
+//                        @Override
+//                        public void onInit(int i) {
+//                            if (i != TextToSpeech.ERROR) {
+//
+//                                toSpeech.setLanguage(Locale.ENGLISH);
+//                                toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+//                            }
+//                        }
+//                    });
+//
+//                }
+//            });
+
+            pronun2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(mContext, word.getText(),Toast.LENGTH_SHORT).show();
-
                     final String s = word.getText().toString();
                     toSpeech = new TextToSpeech(mContext, new TextToSpeech.OnInitListener() {
                         @Override
@@ -72,7 +94,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
                         }
                     });
 
+                    pronun2.playAnimation();
+                    pronun2.setRepeatCount(3);
+                    pronun2.setSpeed(15);
                 }
+
             });
 
 
@@ -108,7 +134,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         viewHolder.word.setText(dictionary.getWord());
         viewHolder.mean.setText(dictionary.getMean());
 
-        if(dictionary.favorite_word) {
+        if(dictionary.getRecent_word()) {
             viewHolder.isFavorite.setImageResource(R.drawable.ic_star_red_24dp);
         }
 

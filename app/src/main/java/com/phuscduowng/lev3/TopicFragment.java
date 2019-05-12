@@ -3,7 +3,6 @@ package com.phuscduowng.lev3;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -25,7 +24,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 
 import org.json.JSONArray;
 
@@ -188,7 +186,7 @@ public class TopicFragment extends Fragment {
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.toipc_item_row, parent, false);
+                    .inflate(R.layout.toipc_item, parent, false);
 
             return new MyViewHolder(itemView);
         }
@@ -197,7 +195,7 @@ public class TopicFragment extends Fragment {
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
             final Topic topic = topicList.get(position);
             holder.name.setText(topic.getTitle());
-            holder.price.setText(topic.getCount());
+//            holder.price.setText(topic.getCount());
 
             Glide.with(context)
                     .load(topic.getImage())

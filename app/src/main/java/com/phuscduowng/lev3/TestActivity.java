@@ -88,31 +88,6 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-//
-//        for(int i = 0; i < ansList.size(); i++) {
-//            Random rd = new Random();
-//            int n = rd.nextInt(ansList.size());
-//            ans1List.add(ansList.get(n));
-//        }
-//
-//        for(int i = 0; i < ansList.size(); i++) {
-//            Random rd = new Random();
-//            int n = rd.nextInt(ansList.size());
-//            ans2List.add(ansList.get(n));
-//        }
-//
-//        for(int i = 0; i < ansList.size(); i++) {
-//            Random rd = new Random();
-//            int n = rd.nextInt(ansList.size());
-//            ans3List.add(ansList.get(n));
-//        }
-//
-//        for(int i = 0; i < ansList.size(); i++) {
-//            Random rd = new Random();
-//            int n = rd.nextInt(ansList.size());
-//            ans4List.add(ansList.get(n));
-//        }
-
 
     }
 

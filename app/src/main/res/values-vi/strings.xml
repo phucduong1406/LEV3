@@ -43,13 +43,15 @@
     <string name="listen">Nghe</string>
     <string name="ok">OK</string>
     <string name="cancel">Hủy</string>
-    <string name="story">Câu chuyện</string>
+    <string name="story">Truyện chêm</string>
     <string name="topic">Chủ đề</string>
     <string name="account">Tài khoản</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorite">Yêu thích</string>
     <string name="recent">Gần đây</string>
     <string name="speech_prompt">Phát âm</string>
     <string name="speech_not_supported">Xin lỗi! Thiết bị của bạn không hỗ trợ nhập giọng nói</string>
     <string name="speech_right">Phát âm đúng</string>
     <string name="speech_wrong">Phát âm sai</string>
+    <string name="flip">Lật</string>
+    <string name="select_time">Chọn thời gian:</string>
 </resources>

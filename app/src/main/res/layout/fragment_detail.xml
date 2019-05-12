@@ -42,7 +42,6 @@
 
             />
 
-        <!--android:onClick="hearPronunciation"-->
 
         <ImageButton
             android:id="@+id/btnVoice"

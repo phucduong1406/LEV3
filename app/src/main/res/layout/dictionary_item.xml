@@ -26,16 +26,30 @@
       android:textSize="14sp"
       tools:text="@tools:sample/full_names" />
 
-  <ImageView
-      android:id="@+id/imgDictPronun"
+  <!--<ImageView-->
+      <!--android:id="@+id/imgDictPronun"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_centerVertical="true"-->
+      <!--android:layout_marginEnd="10dp"-->
+      <!--android:layout_marginRight="10dp"-->
+      <!--android:layout_toStartOf="@+id/imgDictFavorite"-->
+      <!--android:layout_toLeftOf="@+id/imgDictFavorite"-->
+      <!--android:src="@drawable/ic_volume_blue_24dp" />-->
+
+  <com.airbnb.lottie.LottieAnimationView
+      android:id="@+id/imgDictPronun2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerVertical="true"
+      android:layout_gravity="center_horizontal"
       android:layout_marginEnd="10dp"
       android:layout_marginRight="10dp"
       android:layout_toStartOf="@+id/imgDictFavorite"
       android:layout_toLeftOf="@+id/imgDictFavorite"
-      android:src="@drawable/ic_volume_blue_24dp" />
+      app:lottie_autoPlay="false"
+      app:lottie_fileName="volume.json"
+      app:lottie_loop="false" />
 
   <ImageView
       android:id="@+id/imgDictFavorite"

@@ -1,13 +1,14 @@
 package com.phuscduowng.lev3;
 
 public class Flashcards {
-    private String image, word, pronun, mean;
+    private String image, word, pronun, mean, def;
 
-    public Flashcards(String image, String word, String pronun, String mean) {
+    public Flashcards(String image, String word, String def, String pronun, String mean) {
         this.image = image;
         this.word = word;
         this.pronun = pronun;
         this.mean = mean;
+        this.def = def;
     }
 
     public String getImage() {
@@ -40,5 +41,13 @@ public class Flashcards {
 
     public void setMean(String mean) {
         this.mean = mean;
+    }
+
+    public String getDef() {
+        return def;
+    }
+
+    public void setDef(String def) {
+        this.def = def;
     }
 }

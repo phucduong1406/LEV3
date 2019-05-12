@@ -1,5 +1,6 @@
 package com.phuscduowng.lev3;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -244,11 +245,22 @@ public class DetailFragment extends Fragment {
 
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                    if (result.get(0).equals(textWord.getText().toString()))
-                        Toast.makeText(getActivity(), R.string.speech_right, Toast.LENGTH_SHORT).show();
+                    if (result.get(0).equals(textWord.getText().toString())) {
+                        Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_pronun_right);
+                        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
+                        dialog.show();
+                        }
 
                     if (!result.get(0).equals(textWord.getText().toString()))
-                        Toast.makeText(getActivity(), R.string.speech_wrong, Toast.LENGTH_SHORT).show();
+                    {
+                        Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_pronun_wrong);
+                        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
+                        dialog.show();
+                    }
 
                 }
                 break;

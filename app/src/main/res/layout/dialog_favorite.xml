@@ -57,7 +57,8 @@
                 android:text="@string/test"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#111"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginBottom="6dp"/>
 
             <!--<Button-->
                 <!--android:id="@+id/btnRead"-->
@@ -74,21 +75,6 @@
                 <!--android:textColor="#111"-->
                 <!--android:textSize="16sp" />-->
 
-            <Button
-                android:id="@+id/btnListen"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_listen_icon"
-                android:drawablePadding="16dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:text="@string/listen"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#111"
-                android:textSize="16sp" />
 
 
         </LinearLayout>

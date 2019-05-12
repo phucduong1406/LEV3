@@ -44,7 +44,7 @@ public class FlashcardsActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
                 if(dictionary.favorite_word) {
-                    flashcardsList.add(new Flashcards("", dictionary.word, dictionary.pronun, dictionary.mean));
+                    flashcardsList.add(new Flashcards("", dictionary.word, dictionary.def, dictionary.pronun, dictionary.mean));
                 }
                 flashcardsAdapter.notifyDataSetChanged();
             }
@@ -69,6 +69,9 @@ public class FlashcardsActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
         flashcardsAdapter = new FlashcardsAdapter(flashcardsList, this);
 

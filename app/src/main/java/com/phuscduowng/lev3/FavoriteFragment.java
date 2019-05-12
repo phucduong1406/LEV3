@@ -38,7 +38,7 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
     private RVAdapter mAdapter;
 
     ImageView menuFavorite;
-    Button btnFlashcards, btnChoose, btnListen;
+    Button btnFlashcards, btnChoose;
     private Dialog dialog;
 
     DetailFragment detailFragment;
@@ -85,7 +85,6 @@ public class FavoriteFragment extends Fragment implements DictionaryAdapterListe
 
                 btnFlashcards = dialog.findViewById(R.id.btnFlashcards);
                 btnChoose = dialog.findViewById(R.id.btnChoose);
-                btnListen = dialog.findViewById(R.id.btnListen);
 
                 btnFlashcards.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +40,7 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
     private RecyclerView recyclerView;
     private RVAdapter mAdapter;
     private ImageView imgFavorite, imgPronun, menuRecent;
+    LottieAnimationView imgPronun2;
 
     DetailFragment detailFragment;
 
@@ -70,7 +73,8 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
         super.onViewCreated(view, savedInstanceState);
 
         imgFavorite = view.findViewById(R.id.imgDictFavorite);
-        imgPronun = view.findViewById(R.id.imgDictPronun);
+//        imgPronun = view.findViewById(R.id.imgDictPronun);
+        imgPronun2 = view.findViewById(R.id.imgDictPronun2);
         menuRecent = view.findViewById(R.id.menuRecent);
 
 

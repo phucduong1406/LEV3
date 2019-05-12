@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:clipToPadding="false"
+            android:layout_marginRight="8dp"
             android:focusable="true"
             android:scrollbars="vertical" />
     </LinearLayout>

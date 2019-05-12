@@ -29,7 +29,7 @@ import java.util.Locale;
 
 public class AccountFragment extends Fragment {
     private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
-            changeEmail, changePassword, sendEmail, remove, signOut, btnChangeLanguage;
+            changeEmail, changePassword, sendEmail, remove, signOut, btnChangeLanguage, btnReminder;
     private TextView emailUser;
     private EditText oldEmail, newEmail, password, newPassword;
     private ProgressBar progressBar;
@@ -80,6 +80,7 @@ public class AccountFragment extends Fragment {
             }
         };
 
+        btnReminder = view.findViewById(R.id.change_reminder);
         btnChangeLanguage = view.findViewById(R.id.change_language);
         btnChangeEmail = view.findViewById(R.id.change_email_button);
         btnChangePassword = view.findViewById(R.id.change_password_button);
@@ -271,6 +272,19 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 signOut();
+            }
+        });
+
+
+        btnReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_reminder);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+//                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
+                dialog.show();
+
             }
         });
 
