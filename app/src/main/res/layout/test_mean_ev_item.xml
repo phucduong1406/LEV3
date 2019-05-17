@@ -24,7 +24,7 @@
             android:paddingBottom="3dp"
             android:text="word"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 android:text="Button"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnTestAns2"
@@ -60,7 +60,7 @@
                 android:text="Button"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,7 +82,7 @@
                 android:text="Button"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnTestAns4"
@@ -98,7 +98,7 @@
                 android:text="Button"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
 
