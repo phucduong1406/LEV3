@@ -9,7 +9,6 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_bar"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -26,7 +25,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/edit_search"
+                    android:id="@+id/edit_search_favorite"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginBottom="0dp"
@@ -42,21 +41,22 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:id="@+id/menuRecent"
+                    android:id="@+id/menuAddTopic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:layout_weight="0"
-                    android:clickable="true"
-                    android:contentDescription="TODO"
-                    android:focusable="true"
-                    android:src="@drawable/ic_watch_later_black_24dp" />
+                    app:srcCompat="@drawable/ic_add_box_black_24dp" />
 
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
+
+
+
     </android.support.design.widget.AppBarLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

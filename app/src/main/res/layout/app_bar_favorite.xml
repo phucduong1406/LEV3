@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/bg_bar"
             app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -48,7 +48,7 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:layout_weight="0"
-                    app:srcCompat="@drawable/ic_library_add_black_24dp" />
+                    app:srcCompat="@drawable/ic_school_black_24dp" />
 
             </LinearLayout>
 

@@ -8,102 +8,167 @@
     android:gravity="center_vertical"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+    <com.wajahatkarim3.easyflipview.EasyFlipView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="450dp"
+        app:flipOnTouch="true"
+        app:flipType="horizontal"
+        app:flipDuration="300">
 
-
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        app:cardUseCompatPadding="true">
-
-        <RelativeLayout
+        <!-- Back Layout Goes Here -->
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true">
 
-            <ImageView
-                android:id="@+id/imgFlashcards"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginBottom="16dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/flashcards" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/txtFlashcardsWord"
+                <ImageView
+                    android:id="@+id/imgFlashcards"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/flashcards" />
+
+                <TextView
+                    android:id="@+id/txtFlashcardsWord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgFlashcards"
+                    android:layout_marginLeft="16dp"
+                    android:ellipsize="end"
+
+                    android:text="word"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/imgFlashcardsPronun"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignBottom="@+id/txtFlashcardsWord"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_toStartOf="@+id/imgDictFavorite"
+                    android:layout_toLeftOf="@+id/imgDictFavorite"
+                    android:layout_toEndOf="@+id/txtFlashcardsWord"
+                    app:lottie_autoPlay="false"
+                    app:lottie_fileName="volume-black.json"
+                    app:lottie_loop="false" />
+
+                <TextView
+                    android:id="@+id/txtFlashcardsPronun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtFlashcardsWord"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+
+                    android:text="/pronunciation/" />
+
+                <TextView
+                    android:id="@+id/txtFlashcardsMean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/txtFlashcardsPronun"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="mean" />
+
+                <Button
+                    android:id="@+id/btnFlashcardsFlip"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_below="@+id/txtFlashcardsMean"
+                    android:layout_alignEnd="@+id/imgFlashcards"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="@android:color/white"
+                    android:text="@string/flip"
+                    android:textAllCaps="false"
+                    android:textColor="#F44336" />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- Front Layout Goes Here -->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imgFlashcards"
-                android:layout_marginLeft="16dp"
-                android:ellipsize="end"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-                android:text="word"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/definition"
+                    android:textSize="18sp" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imgFlashcardsPronun"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_alignBottom="@+id/txtFlashcardsWord"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="1dp"
-                android:layout_toStartOf="@+id/imgDictFavorite"
-                android:layout_toLeftOf="@+id/imgDictFavorite"
-                android:layout_toEndOf="@+id/txtFlashcardsWord"
-                app:lottie_autoPlay="false"
-                app:lottie_fileName="volume-black.json"
-                app:lottie_loop="false" />
+                <TextView
+                    android:id="@+id/txtFlashcardsDef"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:text="def"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/imgFlashcardsPronun"-->
-                <!--android:layout_width="18dp"-->
-                <!--android:layout_height="18dp"-->
-                <!--android:layout_alignBottom="@+id/txtFlashcardsWord"-->
-                <!--android:layout_marginStart="15dp"-->
-                <!--android:layout_marginBottom="5dp"-->
-                <!--android:layout_toEndOf="@+id/txtFlashcardsWord"-->
-                <!--android:clickable="true"-->
-                <!--android:src="@drawable/ic_volume_up" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/synonyms"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/txtFlashcardsPronun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtFlashcardsWord"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                <TextView
+                    android:id="@+id/txtFlashcardsSyn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:text="syn"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                android:text="/pronunciation/" />
+        </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/txtFlashcardsMean"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_below="@+id/txtFlashcardsPronun"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="mean" />
-
-            <Button
-                android:id="@+id/btnFlashcardsFlip"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_below="@+id/txtFlashcardsMean"
-                android:layout_alignEnd="@+id/imgFlashcards"
-                android:layout_marginBottom="18dp"
-                android:background="@android:color/white"
-                android:text="@string/flip"
-                android:textAllCaps="false"
-                android:textColor="#F44336" />
-
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
 
 </LinearLayout>

@@ -45,6 +45,9 @@ dependencies {
     // glide image library
     implementation 'com.github.bumptech.glide:glide:4.3.1'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    // flip view
+    implementation 'com.wajahatkarim3.EasyFlipView:EasyFlipView:2.1.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

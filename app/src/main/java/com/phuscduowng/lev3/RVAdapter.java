@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     private LayoutInflater mLayoutInflater;
     private Context mContext;
 
+    DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
 
     TextToSpeech toSpeech;
     private static final int REQUEST_CODE = 111;
@@ -129,12 +132,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
     // Thiết lập các thuộc tính của View và dữ liệu.
     @Override
-    public void onBindViewHolder(@NonNull RVAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final RVAdapter.ViewHolder viewHolder, int position) {
         final Dictionary dictionary = dictionaryList.get(position);
         viewHolder.word.setText(dictionary.getWord());
         viewHolder.mean.setText(dictionary.getMean());
 
-        if(dictionary.getRecent_word()) {
+        if(dictionary.getFavorite_word()) {
             viewHolder.isFavorite.setImageResource(R.drawable.ic_star_red_24dp);
         }
 
@@ -145,6 +148,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
             public void onClick(View view) {
                 if(listener != null) {
                     listener.onItemClick(dictionary.getWord());
+                    mData.child("Dictionary").child(dictionary.getWord()).child("recent_word").setValue(true);
                 }
             }
         });

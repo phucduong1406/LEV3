@@ -52,6 +52,8 @@
     <string name="speech_not_supported">Xin lỗi! Thiết bị của bạn không hỗ trợ nhập giọng nói</string>
     <string name="speech_right">Phát âm đúng</string>
     <string name="speech_wrong">Phát âm sai</string>
-    <string name="flip">Lật</string>
+    <string name="flip">Xem nghĩa</string>
     <string name="select_time">Chọn thời gian:</string>
+    <string name="definition">Định nghĩa</string>
+    <string name="synonyms">Từ đồng nghĩa</string>
 </resources>

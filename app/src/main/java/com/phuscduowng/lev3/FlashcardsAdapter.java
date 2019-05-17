@@ -53,9 +53,12 @@ public class FlashcardsAdapter extends PagerAdapter {
 
         ImageView img;
         final LottieAnimationView imgFlashcardsPronun;
-        final TextView word, pronun, mean;
+        final TextView word, pronun, mean, ex, def, syn;
         final Button flip;
 
+
+        def = view.findViewById(R.id.txtFlashcardsDef);
+        syn = view.findViewById(R.id.txtFlashcardsSyn);
         img = view.findViewById(R.id.imgFlashcards);
         word = view.findViewById(R.id.txtFlashcardsWord);
         imgFlashcardsPronun = view.findViewById(R.id.imgFlashcardsPronun);
@@ -63,10 +66,15 @@ public class FlashcardsAdapter extends PagerAdapter {
         mean = view.findViewById(R.id.txtFlashcardsMean);
         flip = view.findViewById(R.id.btnFlashcardsFlip);
 
+        def.setText(flashcards.get(position).getDef());
+        syn.setText(flashcards.get(position).getSyn());
+
+
         Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/lev3-usuow.appspot.com/o/flashcards%2F" + flashcards.get(position).getWord() +".jpg?alt=media").into(img);
 //        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/lev3-usuow.appspot.com/o/flashcards%2Fphoto_flashcards.jpg?alt=media").into(img);
 
-        mean.setText(flashcards.get(position).getDef());
+
+        mean.setText(flashcards.get(position).getEx());
 
 
         word.setVisibility(View.GONE);
@@ -83,14 +91,14 @@ public class FlashcardsAdapter extends PagerAdapter {
                 imgFlashcardsPronun.setSpeed(15);
                 imgFlashcardsPronun.setColorFilter (R.drawable.bg_blue);
 
-                final String s = word.getText().toString();
+
                 toSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int i) {
                         if (i != TextToSpeech.ERROR) {
 
                             toSpeech.setLanguage(Locale.ENGLISH);
-                            toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+                            toSpeech.speak(word.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
                         }
                     }
                 });
@@ -109,7 +117,16 @@ public class FlashcardsAdapter extends PagerAdapter {
                 pronun.setText(flashcards.get(position).getPronun());
                 mean.setText(flashcards.get(position).getMean());
 
+                toSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int i) {
+                        if (i != TextToSpeech.ERROR) {
 
+                            toSpeech.setLanguage(Locale.ENGLISH);
+                            toSpeech.speak(word.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }
+                });
             }
         });
 

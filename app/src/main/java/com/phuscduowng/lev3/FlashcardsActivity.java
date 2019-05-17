@@ -44,7 +44,7 @@ public class FlashcardsActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
                 if(dictionary.favorite_word) {
-                    flashcardsList.add(new Flashcards("", dictionary.word, dictionary.def, dictionary.pronun, dictionary.mean));
+                    flashcardsList.add(new Flashcards("", dictionary.word, dictionary.def, dictionary.syn, dictionary.pronun, dictionary.mean, dictionary.ex));
                 }
                 flashcardsAdapter.notifyDataSetChanged();
             }
@@ -79,19 +79,19 @@ public class FlashcardsActivity extends AppCompatActivity {
         pagerFlashcards.setAdapter(flashcardsAdapter);
         pagerFlashcards.setPadding(130, 0, 130,0);
 
-        Integer[] color_temp = {
-                getResources().getColor(R.color.colorWhite)
-        };
-        color = color_temp;
+//        Integer[] color_temp = {
+//                getResources().getColor(R.color.colorWhite)
+//        };
+//        color = color_temp;
 
         pagerFlashcards.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-                if (i < (flashcardsAdapter.getCount() - 1) && i < (color.length - 1)) {
-                    pagerFlashcards.setBackgroundColor((Integer) argbEvaluator.evaluate(v, color[i], color[i + 1]));
-                } else {
-                    pagerFlashcards.setBackgroundColor(color[color.length - 1]);
-                }
+//                if (i < (flashcardsAdapter.getCount() - 1) && i < (color.length - 1)) {
+//                    pagerFlashcards.setBackgroundColor((Integer) argbEvaluator.evaluate(v, color[i], color[i + 1]));
+//                } else {
+//                    pagerFlashcards.setBackgroundColor(color[color.length - 1]);
+//                }
 
 
 //                final String s = flashcardsList.get(i).getWord();

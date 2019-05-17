@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:cardCornerRadius="20dp"
+        >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/word"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtWordDictionary"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_textbox"
+                android:hint="name"
+                android:maxLines="1"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/pronunciation"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtPronunDictionary"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_textbox"
+                android:hint="/pronunciation/"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/mean"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtMeanDictionary"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_textbox"
+                android:hint="mean"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textSize="16sp" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right">
+
+                <Button
+                    android:id="@+id/btnOKAddTopic"
+                    style="@android:style/Widget.Material.Light.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="@string/ok"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <Button
+                    android:id="@+id/btnCacelAddTopic"
+                    style="@android:style/Widget.Material.Light.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>

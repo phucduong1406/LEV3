@@ -1,7 +1,9 @@
 package com.phuscduowng.lev3;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +15,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -27,10 +32,14 @@ import java.util.List;
 
 public class TopicChildFragment extends Fragment implements DictionaryAdapterListener {
 
+    Boolean isAdded = false;
+
     private List<Dictionary> topicChildList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RVAdapter mAdapter;
     String value = "";
+    Dialog dialog;
+    ImageView menuAddTopic;
 
     DetailFragment detailFragment;
 
@@ -65,6 +74,74 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        menuAddTopic = view.findViewById(R.id.menuAddTopic);
+        menuAddTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_add_dictionary);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
+                dialog.show();
+
+                Button btnOKAddTopic = (Button) dialog.findViewById(R.id.btnOKAddTopic);
+                Button btnCacelAddTopic = (Button) dialog.findViewById(R.id.btnCacelAddTopic);
+
+                btnOKAddTopic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final EditText word = dialog.findViewById(R.id.txtWordDictionary);
+                        final EditText mean = dialog.findViewById(R.id.txtMeanDictionary);
+                        final EditText pronun = dialog.findViewById(R.id.txtPronunDictionary);
+
+                        if (!word.getText().toString().equals("") && !mean.getText().toString().equals("") && !pronun.getText().toString().equals("") ) {
+                            mData.child(word.getText().toString().toLowerCase()).child("word").setValue(word.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("pronun").setValue(mean.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("def").setValue(word.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("detail").setValue(word.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("ex").setValue("");
+                            mData.child(word.getText().toString().toLowerCase()).child("favorite_word").setValue(false);
+                            mData.child(word.getText().toString().toLowerCase()).child("recent_word").setValue(false);
+                            mData.child(word.getText().toString().toLowerCase()).child("syn").setValue("");
+                            mData.child(word.getText().toString().toLowerCase()).child("mean").setValue(pronun.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("topic").setValue(value.toLowerCase());
+                            dialog.dismiss();
+
+                            isAdded = true;
+
+                        } else {
+                            word.setError("Enter name");
+                            mean.setError("Enter mean");
+                            pronun.setError("Enter pronunciation");
+                        }
+
+
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+                btnCacelAddTopic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        if (isAdded) {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            if (Build.VERSION.SDK_INT >= 26) {
+                ft.setReorderingAllowed(false);
+            }
+            ft.detach(this).attach(this).commit();
+            isAdded = false;
+        }
+
+
 
         detailFragment = new DetailFragment();
 
@@ -123,6 +200,8 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
         mAdapter = new RVAdapter(getActivity(), topicChildList);
         mAdapter.setListener(this);
         recyclerView.setAdapter(mAdapter);
+
+
     }
 
     @Override

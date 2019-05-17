@@ -8,6 +8,8 @@ public class Dictionary {
     public String detail;
     public String topic;
     public String def;
+    public String syn;
+    public String ex;
     public Boolean favorite_word;
     public Boolean recent_word;
 
@@ -16,10 +18,12 @@ public class Dictionary {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Dictionary(String word, String def, String pronun, String mean, String detail, String topic, Boolean favorite_word, Boolean recent_word) {
+    public Dictionary(String word, String def, String syn, String ex, String pronun, String mean, String detail, String topic, Boolean favorite_word, Boolean recent_word) {
         this.word = word;
         this.pronun = pronun;
         this.def = def;
+        this.syn = syn;
+        this.ex = ex;
         this.mean = mean;
         this.detail = detail;
         this.topic = topic;
@@ -89,5 +93,21 @@ public class Dictionary {
 
     public void setDef(String def) {
         this.def = def;
+    }
+
+    public String getEx() {
+        return ex;
+    }
+
+    public void setEx(String ex) {
+        this.ex = ex;
+    }
+
+    public String getSyn() {
+        return syn;
+    }
+
+    public void setSyn(String syn) {
+        this.syn = syn;
     }
 }
