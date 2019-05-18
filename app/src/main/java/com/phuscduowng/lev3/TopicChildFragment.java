@@ -2,7 +2,6 @@ package com.phuscduowng.lev3;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -85,8 +84,8 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
                 dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
                 dialog.show();
 
-                Button btnOKAddTopic = (Button) dialog.findViewById(R.id.btnOKAddTopic);
-                Button btnCacelAddTopic = (Button) dialog.findViewById(R.id.btnCacelAddTopic);
+                Button btnOKAddTopic = (Button) dialog.findViewById(R.id.btnOKAddDictionary);
+                Button btnCacelAddTopic = (Button) dialog.findViewById(R.id.btnCacelAddDictionary);
 
                 btnOKAddTopic.setOnClickListener(new View.OnClickListener() {
                     @Override

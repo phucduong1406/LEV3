@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="12dp">
 
         <LinearLayout
             android:layout_width="300dp"
@@ -38,6 +38,7 @@
                 android:drawableLeft="@drawable/ic_flashcards_icon"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
+                android:minHeight="50dp"
                 android:paddingLeft="20dp"
                 android:text="@string/flashcards"
                 android:textAppearance="@style/TextAppearance.AppCompat"
@@ -49,16 +50,17 @@
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_choose_icon"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
+                android:minHeight="50dp"
                 android:paddingLeft="20dp"
                 android:text="@string/test"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#111"
-                android:textSize="16sp"
-                android:layout_marginBottom="6dp"/>
+                android:textSize="16sp" />
 
             <!--<Button-->
                 <!--android:id="@+id/btnRead"-->

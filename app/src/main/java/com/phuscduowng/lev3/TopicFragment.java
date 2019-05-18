@@ -1,9 +1,12 @@
 package com.phuscduowng.lev3;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,6 +17,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +27,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,7 +49,13 @@ public class TopicFragment extends Fragment {
     private List<Topic> topicList;
     private TopicAdapter mAdapter;
 
+    ImageView menuAddTopic;
+    private Dialog dialog;
+
     TopicChildFragment topicChildFragment;
+
+    // Lấy toàn bộ dữ liệu trong Dictionary
+    DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Topic");
 
     public TopicFragment() {
         // Required empty public constructor
@@ -61,11 +77,55 @@ public class TopicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_topic, container, false);
+        final View view = inflater.inflate(R.layout.fragment_topic, container, false);
+
+        menuAddTopic = view.findViewById(R.id.menuAddTopic);
+        menuAddTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_add_topic);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;  // Animation dialog
+                dialog.show();
+
+                Button btnOKAddTopic = (Button) dialog.findViewById(R.id.btnOKAddTopic);
+                Button btnCacelAddTopic = (Button) dialog.findViewById(R.id.btnCacelAddTopic);
+
+                btnOKAddTopic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final EditText name = dialog.findViewById(R.id.txtNameTopic);
+                        if (!name.getText().toString().equals("")) {
+                            String s = name.getText().toString();
+                            s.toLowerCase();
+                            mData.child(s).child("title").setValue(s);
+                            mData.child(s).child("image").setValue("https://firebasestorage.googleapis.com/v0/b/lev3-usuow.appspot.com/o/topics%2Fnone.png?alt=media&token=1693aaac-6323-4d89-9300-6d328a079886");
+                            dialog.dismiss();
+                        } else {
+                            name.setError("Enter name");
+                        }
+
+                    }
+                });
+
+                btnCacelAddTopic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
+
 
 
         topicChildFragment = new TopicChildFragment();
+
+
 
         recyclerView = view.findViewById(R.id.topic_view);
         topicList = new ArrayList<>();
@@ -102,6 +162,37 @@ public class TopicFragment extends Fragment {
 
                         topicList.clear();
                         topicList.addAll(items);
+
+                        mData.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                final Topic topic = dataSnapshot.getValue(Topic.class);
+                                topicList.add(topic);
+                                mAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
 
                         // refreshing recycler view
                         mAdapter.notifyDataSetChanged();
@@ -166,7 +257,7 @@ public class TopicFragment extends Fragment {
         private List<Topic> topicList;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-            public TextView name, price;
+            public TextView name;
             public ImageView thumbnail;
 
             public MyViewHolder(View view) {
