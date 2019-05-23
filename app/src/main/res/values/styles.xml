@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarSize">46dp</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="FavoriteTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -13,6 +15,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarSize">46dp</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="WhiteTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -35,4 +39,5 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
+
 </resources>

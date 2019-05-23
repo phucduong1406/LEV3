@@ -18,13 +18,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FlashcardsActivity"
-            android:label="Flashcards"
-            android:parentActivityName=".MainActivity"
             android:theme="@style/FavoriteTheme" />
         <activity
             android:name=".StoryActivity"
-            android:label="Story"
-            android:parentActivityName=".MainActivity"
             android:theme="@style/FavoriteTheme" />
         <activity
             android:name=".SigninActivity"
@@ -41,7 +37,9 @@
         <activity
             android:name=".ResetPassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity"
+            android:theme="@style/FavoriteTheme"
+            />
     </application>
 
 </manifest>

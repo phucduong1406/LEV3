@@ -62,4 +62,9 @@
     <string name="word">Word:</string>
     <string name="pronunciation">Pronunciation:</string>
     <string name="mean">Mean:</string>
+    <string name="test_ev">Select the Vietnamese meaning of the word</string>
+    <string name="test_ve">Select the English meaning of the word</string>
+    <string name="add_a_topic">Add a topic</string>
+    <string name="add_a_word">Add a word</string>
+    <string name="practice">Practice</string>
 </resources>

@@ -1,10 +1,14 @@
 package com.phuscduowng.lev3;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,18 +29,20 @@ public class TestAdapter extends PagerAdapter {
     private List<String> test, ans, ans1, ans2, ans3, ans4;
     private LayoutInflater layoutInflater;
     private Context context;
-    public int right = 0, wrong = 0;
+    public int right, wrong;
     TextToSpeech toSpeech;
     private static final int REQUEST_CODE = 111;
+    ViewPager pagerTest;
 
-    List<String> ansMeanEV, ansWordListening;
+    List<String> ansMeanEV, ansWordVE, ansWordListening;
     int[] ansButon = new int[4];
+    private Activity testActivity;
 
-    public TestAdapter(List<String> test, List<String> ans, List<String> ans1, List<String> ans2, List<String> ans3, List<String> ans4, Context context) {
+    public TestAdapter(List<String> test, List<String> ans, int right, int wrong, List<String> ans3, List<String> ans4, Context context) {
         this.test = test;
         this.ans = ans;
-        this.ans1 = ans1;
-        this.ans2 = ans2;
+        this.right = right;
+        this.wrong = wrong;
         this.ans3 = ans3;
         this.ans4 = ans4;
         this.context = context;
@@ -55,6 +61,9 @@ public class TestAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
+        pagerTest = ((TestActivity) context).findViewById(R.id.pagerTest);
+
+
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.test_mean_ev_item, container, false);
         Random rdType = new Random();
@@ -87,27 +96,35 @@ public class TestAdapter extends PagerAdapter {
                             }
                         });
 
-                        imgListeningWord.playAnimation();
-                        imgListeningWord.setRepeatCount(3);
-                        imgListeningWord.setSpeed(15);
+
+//                        imgListeningWord.pauseAnimation();
+//                        try
+//                        {
+//                            Thread.sleep(3000);
+//                        }
+//                        catch(InterruptedException ex)
+//                        {
+//                            Thread.currentThread().interrupt();
+//                        }
+//                        imgListeningWord.playAnimation();
                     }
 
                 });
 
 
                 ansWordListening = new ArrayList<>();
-                ansWordListening.add(test.get(position));
+                ansWordListening.add(ans.get(position));
                 for(int i = 0; i < 3; i++) {
                     Random rd = new Random();
                     int n;
-                    n = rd.nextInt(test.size());
+                    n = rd.nextInt(ans.size());
 
                     if (n != position) {
-                        ansWordListening.add(test.get(n));
+                        ansWordListening.add(ans.get(n));
                     }
                     else {
                         n = rd.nextInt(ans.size());
-                        ansWordListening.add(test.get(n));
+                        ansWordListening.add(ans.get(n));
                     }
                 }
 
@@ -126,58 +143,84 @@ public class TestAdapter extends PagerAdapter {
                 btnListeningAns1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (test.get(position).equals(btnListeningAns1.getText())) {
-                            btnListeningAns1.setBackgroundResource(R.drawable.bg_button_test_green);
-//                    btnTestAns1.setTextColor(Color.rgb(0, 0, 0));
+                        if (ans.get(position).equals(btnListeningAns1.getText())) {
+                            btnListeningAns1.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnListeningAns1.setBackgroundResource(R.drawable.bg_button_test_red);
-
+                            btnListeningAns1.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+
+                        btnListeningAns1.setClickable(false);
+                        btnListeningAns2.setClickable(false);
+                        btnListeningAns3.setClickable(false);
+                        btnListeningAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
                 btnListeningAns2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (test.get(position).equals(btnListeningAns2.getText())) {
-                            btnListeningAns2.setBackgroundResource(R.drawable.bg_button_test_green);
+                        if (ans.get(position).equals(btnListeningAns2.getText())) {
+                            btnListeningAns2.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnListeningAns2.setBackgroundResource(R.drawable.bg_button_test_red);
+                            btnListeningAns2.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+
+                        btnListeningAns1.setClickable(false);
+                        btnListeningAns2.setClickable(false);
+                        btnListeningAns3.setClickable(false);
+                        btnListeningAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
                 btnListeningAns3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (test.get(position).equals(btnListeningAns3.getText())) {
-                            btnListeningAns3.setBackgroundResource(R.drawable.bg_button_test_green);
+                        if (ans.get(position).equals(btnListeningAns3.getText())) {
+                            btnListeningAns3.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnListeningAns3.setBackgroundResource(R.drawable.bg_button_test_red);
+                            btnListeningAns3.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+
+                        btnListeningAns1.setClickable(false);
+                        btnListeningAns2.setClickable(false);
+                        btnListeningAns3.setClickable(false);
+                        btnListeningAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
                 btnListeningAns4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (test.get(position).equals(btnListeningAns4.getText())) {
-                            btnListeningAns4.setBackgroundResource(R.drawable.bg_button_test_green);
+                        if (ans.get(position).equals(btnListeningAns4.getText())) {
+                            btnListeningAns4.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnListeningAns4.setBackgroundResource(R.drawable.bg_button_test_red);
+                            btnListeningAns4.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+
+                        btnListeningAns1.setClickable(false);
+                        btnListeningAns2.setClickable(false);
+                        btnListeningAns3.setClickable(false);
+                        btnListeningAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
                 break;
@@ -228,15 +271,21 @@ public class TestAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         if (ans.get(position).equals(btnTestAns1.getText())) {
-                            btnTestAns1.setBackgroundResource(R.drawable.bg_button_test_green);
-//                    btnTestAns1.setTextColor(Color.rgb(0, 0, 0));
+//                            btnTestAns1.setBackgroundResource(R.drawable.bg_button_test_green);
+                            btnTestAns1.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnTestAns1.setBackgroundResource(R.drawable.bg_button_test_red);
-
+                            btnTestAns1.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+
+                        btnTestAns1.setClickable(false);
+                        btnTestAns2.setClickable(false);
+                        btnTestAns3.setClickable(false);
+                        btnTestAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
@@ -244,13 +293,19 @@ public class TestAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         if (ans.get(position).equals(btnTestAns2.getText())) {
-                            btnTestAns2.setBackgroundResource(R.drawable.bg_button_test_green);
+                            btnTestAns2.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnTestAns2.setBackgroundResource(R.drawable.bg_button_test_red);
+                            btnTestAns2.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+                        btnTestAns1.setClickable(false);
+                        btnTestAns2.setClickable(false);
+                        btnTestAns3.setClickable(false);
+                        btnTestAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
@@ -258,13 +313,19 @@ public class TestAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         if (ans.get(position).equals(btnTestAns3.getText())) {
-                            btnTestAns3.setBackgroundResource(R.drawable.bg_button_test_green);
+                            btnTestAns3.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnTestAns3.setBackgroundResource(R.drawable.bg_button_test_red);
+                            btnTestAns3.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+                        btnTestAns1.setClickable(false);
+                        btnTestAns2.setClickable(false);
+                        btnTestAns3.setClickable(false);
+                        btnTestAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
@@ -272,32 +333,166 @@ public class TestAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         if (ans.get(position).equals(btnTestAns4.getText())) {
-                            btnTestAns4.setBackgroundResource(R.drawable.bg_button_test_green);
+                            btnTestAns4.setTextColor(Color.rgb(31, 199, 74));
                             right++;
                         }
                         else {
-                            btnTestAns4.setBackgroundResource(R.drawable.bg_button_test_red);
+                            btnTestAns4.setTextColor(Color.rgb(255, 77, 69));
                             wrong++;
                         }
+                        btnTestAns1.setClickable(false);
+                        btnTestAns2.setClickable(false);
+                        btnTestAns3.setClickable(false);
+                        btnTestAns4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
                     }
                 });
 
                 break;
             case 2:
-                layoutInflater.inflate(R.layout.test_mean_ve_item, container, false);
+                Boolean isClick = false;
+                view = layoutInflater.inflate(R.layout.test_mean_ve_item, container, false);
+
+                final TextView wordVE;
+                final Button btnTestAnsVE4, btnTestAnsVE1, btnTestAnsVE2, btnTestAnsVE3;
+
+                wordVE = view.findViewById(R.id.txtTestWordVE);
+                btnTestAnsVE1 = view.findViewById(R.id.btnTestAnsVE1);
+                btnTestAnsVE2 = view.findViewById(R.id.btnTestAnsVE2);
+                btnTestAnsVE3 = view.findViewById(R.id.btnTestAnsVE3);
+                btnTestAnsVE4 = view.findViewById(R.id.btnTestAnsVE4);
 
 
+                wordVE.setText(ans.get(position));
 
-                break;
-            case 3:
-                layoutInflater.inflate(R.layout.test_writing_item, container, false);
+                ansWordVE = new ArrayList<>();
+                ansWordVE.add(test.get(position));
+
+                for(int i = 0; i < 3; i++) {
+                    Random rd = new Random();
+                    int n;
+                    n = rd.nextInt(test.size());
+
+                    if (n != position) {
+                        ansWordVE.add(test.get(n));
+                    }
+                    else {
+                        n = rd.nextInt(test.size());
+                        ansWordVE.add(test.get(n));
+                    }
+                }
+
+                ansButon[0] = 0;
+                ansButon[1] = 1;
+                ansButon[2] = 2;
+                ansButon[3] = 3;
+
+                RandomizeArray(ansButon);
+
+                btnTestAnsVE1.setText(ansWordVE.get(ansButon[0]));
+                btnTestAnsVE2.setText(ansWordVE.get(ansButon[1]));
+                btnTestAnsVE3.setText(ansWordVE.get(ansButon[2]));
+                btnTestAnsVE4.setText(ansWordVE.get(ansButon[3]));
+
+                btnTestAnsVE1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (test.get(position).equals(btnTestAnsVE1.getText())) {
+                            btnTestAnsVE1.setTextColor(Color.rgb(31, 199, 74));
+                            right++;
+                        }
+                        else {
+                            btnTestAnsVE1.setTextColor(Color.rgb(255, 77, 69));
+                            wrong++;
+                        }
+                        btnTestAnsVE1.setClickable(false);
+                        btnTestAnsVE2.setClickable(false);
+                        btnTestAnsVE3.setClickable(false);
+                        btnTestAnsVE4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
+
+                    }
+                });
+
+                btnTestAnsVE2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (test.get(position).equals(btnTestAnsVE2.getText())) {
+                            btnTestAnsVE2.setTextColor(Color.rgb(31, 199, 74));
+                            right++;
+                        }
+                        else {
+                            btnTestAnsVE2.setTextColor(Color.rgb(255, 77, 69));
+                            wrong++;
+                        }
+                        btnTestAnsVE1.setClickable(false);
+                        btnTestAnsVE2.setClickable(false);
+                        btnTestAnsVE3.setClickable(false);
+                        btnTestAnsVE4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
+                    }
+                });
+
+                btnTestAnsVE3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (test.get(position).equals(btnTestAnsVE3.getText())) {
+                            btnTestAnsVE3.setTextColor(Color.rgb(31, 199, 74));
+                            right++;
+                        }
+                        else {
+                            btnTestAnsVE3.setTextColor(Color.rgb(255, 77, 69));
+                            wrong++;
+                        }
+                        btnTestAnsVE1.setClickable(false);
+                        btnTestAnsVE2.setClickable(false);
+                        btnTestAnsVE3.setClickable(false);
+                        btnTestAnsVE4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
+                    }
+                });
+
+                btnTestAnsVE4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (test.get(position).equals(btnTestAnsVE4.getText())) {
+                            btnTestAnsVE4.setTextColor(Color.rgb(31, 199, 74));
+                            right++;
+                        }
+                        else {
+                            btnTestAnsVE4.setTextColor(Color.rgb(255, 77, 69));
+                            wrong++;
+                        }
+                        btnTestAnsVE1.setClickable(false);
+                        btnTestAnsVE2.setClickable(false);
+                        btnTestAnsVE3.setClickable(false);
+                        btnTestAnsVE4.setClickable(false);
+
+//                        pagerTest.setCurrentItem(position + 1);
+                    }
+                });
+
                 break;
             default:
-                layoutInflater.inflate(R.layout.test_mean_ev_item, container, false);
+                layoutInflater.inflate(R.layout.test_mean_ve_item, container, false);
                 break;
         }
 
-        Toast.makeText(context, position + "/" + test.size(), Toast.LENGTH_SHORT).show();
+
+        TextView txtTestPos = ((TestActivity) context).findViewById(R.id.txtTestPos);
+        TextView txtTestRight = ((TestActivity) context).findViewById(R.id.txtTestRight);
+        TextView txtTestWrong = ((TestActivity) context).findViewById(R.id.txtTestWrong);
+
+        String pos = position + "/" + test.size();
+        String rightAnwer = String.valueOf(right);
+        String wrongAnwer = String.valueOf(wrong);
+        txtTestPos.setText(pos);
+        txtTestRight.setText(rightAnwer);
+        txtTestWrong.setText(wrongAnwer);
 
         container.addView(view, 0);
         return view;

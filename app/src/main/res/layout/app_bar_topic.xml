@@ -24,21 +24,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edit_search_favorite"
+                <TextView
+
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/radius_edit_text"
-                    android:drawableLeft="@drawable/ic_search_white_24dp"
-                    android:drawablePadding="5dp"
-                    android:hint="@string/search"
-                    android:inputType="text"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:text="@string/topic"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/menuAddTopic"

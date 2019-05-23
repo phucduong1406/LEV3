@@ -2,6 +2,7 @@ package com.phuscduowng.lev3;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,10 @@ public class StoryActivity extends AppCompatActivity implements StoryInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.story);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         storyFragment = new StoryFragment();
         storyDetailFragment = new StoryDetailFragment();

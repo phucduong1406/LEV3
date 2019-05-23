@@ -14,13 +14,36 @@
         app:cardCornerRadius="12dp"
         >
 
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:srcCompat="@color/colorPrimary" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/add_a_topic"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical"
             android:paddingLeft="4dp"
             android:paddingTop="12dp"
+            android:background="@android:color/white"
             android:paddingRight="4dp">
 
 
@@ -58,7 +81,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
                     android:text="@string/ok"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"/>
 
                 <Button
                     android:id="@+id/btnCacelAddTopic"
@@ -67,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="@string/cancel"
-                    android:textColor="@color/colorRed" />
+                    android:textColor="@color/colorRed"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
         </LinearLayout>

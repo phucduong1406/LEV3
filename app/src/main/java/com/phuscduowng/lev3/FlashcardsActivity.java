@@ -5,8 +5,10 @@ import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +38,12 @@ public class FlashcardsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcards);
+
+        getSupportActionBar().setTitle(R.string.flashcards);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setElevation(0);
+
 
         flashcardsList = new ArrayList<>();
 
@@ -78,6 +86,24 @@ public class FlashcardsActivity extends AppCompatActivity {
         pagerFlashcards = findViewById(R.id.pagerFlashcards);
         pagerFlashcards.setAdapter(flashcardsAdapter);
         pagerFlashcards.setPadding(130, 0, 130,0);
+
+        pagerFlashcards.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(View page, float position) {
+                int pageWidth = pagerFlashcards.getMeasuredWidth() -
+                        pagerFlashcards.getPaddingLeft() - pagerFlashcards.getPaddingRight();
+                int paddingLeft = pagerFlashcards.getPaddingLeft();
+                float transformPos = (float) (page.getLeft() -
+                        (pagerFlashcards.getScrollX() + paddingLeft)) / pageWidth;
+                if (transformPos < -1){
+                    page.setScaleY(0.8f);
+                } else if (transformPos <= 1) {
+                    page.setScaleY(1f);
+                } else {
+                    page.setScaleY(0.8f);
+                }
+            }
+        });
 
 //        Integer[] color_temp = {
 //                getResources().getColor(R.color.colorWhite)
