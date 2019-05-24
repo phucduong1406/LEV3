@@ -1,7 +1,9 @@
 package com.phuscduowng.lev3;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -43,7 +45,7 @@ import java.util.List;
 public class TopicFragment extends Fragment {
 
     private static final String TAG = TopicFragment.class.getSimpleName();
-    private static final String URL = "https://firebasestorage.googleapis.com/v0/b/lev2-pd.appspot.com/o/topic.json?alt=media&token=487ad2c1-a43f-4dc5-8708-c0ad5657676e";
+    private static final String URL = "https://firebasestorage.googleapis.com/v0/b/lev3-usuow.appspot.com/o/topics%2Ftopic.json?alt=media&token=2df167c2-7f10-4ed0-aa4b-ce643eb7dec5";
 
     private RecyclerView recyclerView;
     private List<Topic> topicList;
@@ -298,6 +300,65 @@ public class TopicFragment extends Fragment {
                 public void onClick(View v) {
                     loadFragment(topicChildFragment.getNewInstance(topic.title), true);
 
+                }
+            });
+
+            holder.thumbnail.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle(R.string.remove_topic);
+                    builder.setMessage(R.string.sure_remove_topic);
+                    builder.setCancelable(false);
+                    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mData.addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                    final Topic topic = dataSnapshot.getValue(Topic.class);
+                                    mData.child(topic.title).setValue(null);
+                                    Toast.makeText(getContext(), R.string.removed, Toast.LENGTH_SHORT).show();
+
+//
+//                                    Fragment f = new TopicFragment();
+//                                    getFragmentManager().beginTransaction().detach(f).attach(f).commit();
+
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    });
+                    builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                    return true;
                 }
             });
         }

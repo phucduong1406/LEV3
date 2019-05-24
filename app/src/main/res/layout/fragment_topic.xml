@@ -4,6 +4,7 @@
     android:id="@+id/frameTopic"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DADADA"
     tools:context=".TopicFragment">
 
     <LinearLayout
@@ -21,9 +22,9 @@
             android:id="@+id/topic_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
             android:clickable="true"
             android:clipToPadding="false"
-            android:layout_marginRight="8dp"
             android:focusable="true"
             android:scrollbars="vertical" />
     </LinearLayout>

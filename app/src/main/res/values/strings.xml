@@ -67,4 +67,9 @@
     <string name="add_a_topic">Add a topic</string>
     <string name="add_a_word">Add a word</string>
     <string name="practice">Practice</string>
+    <string name="remove_topic">Remove topic</string>
+    <string name="sure_remove_topic">Are you sure remove this topic?</string>
+    <string name="yes">Yes</string>
+    <string name="removed">This topic removed, please refresh the fragment!</string>
+    <string name="no">No</string>
 </resources>

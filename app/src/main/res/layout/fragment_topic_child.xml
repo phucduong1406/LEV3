@@ -7,7 +7,7 @@
 
 
     <include
-        layout="@layout/app_bar_topic"
+        layout="@layout/app_bar_topic_child"
         android:layout_width="match_parent"
         android:layout_height="45dp" />
 

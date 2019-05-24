@@ -1,16 +1,27 @@
 package com.phuscduowng.lev3;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
@@ -25,6 +36,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     private List<Dictionary> dictionaryList;
     private LayoutInflater mLayoutInflater;
     private Context mContext;
+    private Dialog dialog;
 
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
 
@@ -107,10 +119,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onClick(View v) {
-
+                public boolean onLongClick(View v) {
+                    Toast.makeText(context, "Removed", Toast.LENGTH_SHORT).show();
+                    return false;
                 }
             });
         }

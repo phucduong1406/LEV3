@@ -87,23 +87,32 @@ public class FlashcardsActivity extends AppCompatActivity {
         pagerFlashcards.setAdapter(flashcardsAdapter);
         pagerFlashcards.setPadding(130, 0, 130,0);
 
-        pagerFlashcards.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-                int pageWidth = pagerFlashcards.getMeasuredWidth() -
-                        pagerFlashcards.getPaddingLeft() - pagerFlashcards.getPaddingRight();
-                int paddingLeft = pagerFlashcards.getPaddingLeft();
-                float transformPos = (float) (page.getLeft() -
-                        (pagerFlashcards.getScrollX() + paddingLeft)) / pageWidth;
-                if (transformPos < -1){
-                    page.setScaleY(0.8f);
-                } else if (transformPos <= 1) {
-                    page.setScaleY(1f);
-                } else {
-                    page.setScaleY(0.8f);
-                }
-            }
-        });
+//        pagerFlashcards.setPageTransformer(false, new ViewPager.PageTransformer() {
+//            @Override
+//            public void transformPage(View page, float position) {
+//                int pageWidth = pagerFlashcards.getMeasuredWidth() -
+//                        pagerFlashcards.getPaddingLeft() - pagerFlashcards.getPaddingRight();
+//                int paddingLeft = pagerFlashcards.getPaddingLeft();
+//                float transformPos = (float) (page.getLeft() -
+//                        (pagerFlashcards.getScrollX() + paddingLeft)) / pageWidth;
+//                if (transformPos < -1){
+//                    page.setScaleY(0.8f);
+//                } else if (transformPos <= 1) {
+//                    page.setScaleY(1f);
+//                } else {
+//                    page.setScaleY(0.8f);
+//                }
+//            }
+//        });
+
+//        pagerFlashcards.setPageTransformer(false, new ViewPager.PageTransformer() {
+//            @Override
+//            public void transformPage(View page, float position) {
+//                final float normalizedposition = Math.abs(Math.abs(position) - 1);
+//                page.setScaleX(normalizedposition / 2 + 0.5f);
+//                page.setScaleY(normalizedposition / 2 + 0.5f);
+//            }
+//        });
 
 //        Integer[] color_temp = {
 //                getResources().getColor(R.color.colorWhite)

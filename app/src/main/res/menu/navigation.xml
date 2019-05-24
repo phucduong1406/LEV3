@@ -11,15 +11,16 @@
         android:icon="@drawable/ic_star_black"
         android:title="@string/favorite" />
 
-    <item
-        android:id="@+id/navigation_story"
-        android:icon="@drawable/ic_icon_story"
-        android:title="@string/story" />
 
     <item
         android:id="@+id/navigation_topic"
         android:icon="@drawable/ic_view_agenda_black_24dp"
         android:title="@string/topic" />
+
+    <item
+        android:id="@+id/navigation_story"
+        android:icon="@drawable/ic_icon_story"
+        android:title="@string/story" />
 
     <item
         android:id="@+id/navigation_account"

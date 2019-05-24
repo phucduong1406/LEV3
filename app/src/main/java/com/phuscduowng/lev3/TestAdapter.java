@@ -487,7 +487,8 @@ public class TestAdapter extends PagerAdapter {
         TextView txtTestRight = ((TestActivity) context).findViewById(R.id.txtTestRight);
         TextView txtTestWrong = ((TestActivity) context).findViewById(R.id.txtTestWrong);
 
-        String pos = position + "/" + test.size();
+        int posp = position + 1;
+        String pos = posp + "/" + test.size();
         String rightAnwer = String.valueOf(right);
         String wrongAnwer = String.valueOf(wrong);
         txtTestPos.setText(pos);

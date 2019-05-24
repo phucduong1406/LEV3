@@ -11,12 +11,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
 
-        android:clickable="true"
-
-        card_view:cardCornerRadius="10dp"
-        card_view:cardBackgroundColor="@android:color/white"
-        card_view:cardElevation="6dp"
-        card_view:cardUseCompatPadding="true">
+        card_view:cardBackgroundColor="#fff"
+        card_view:cardElevation="0dp"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="14dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

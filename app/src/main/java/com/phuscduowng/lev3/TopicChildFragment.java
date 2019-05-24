@@ -101,7 +101,7 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
                             mData.child(word.getText().toString().toLowerCase()).child("detail").setValue(word.getText().toString().toLowerCase());
                             mData.child(word.getText().toString().toLowerCase()).child("ex").setValue("");
                             mData.child(word.getText().toString().toLowerCase()).child("favorite_word").setValue(false);
-                            mData.child(word.getText().toString().toLowerCase()).child("recent_word").setValue(false);
+                            mData.child(word.getText().toString().toLowerCase()).child("recent_word").setValue(true);
                             mData.child(word.getText().toString().toLowerCase()).child("syn").setValue("");
                             mData.child(word.getText().toString().toLowerCase()).child("mean").setValue(pronun.getText().toString().toLowerCase());
                             mData.child(word.getText().toString().toLowerCase()).child("topic").setValue(value.toLowerCase());
