@@ -109,6 +109,8 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
 
                             isAdded = true;
 
+                            dialog.dismiss();
+
                         } else {
                             word.setError("Enter name");
                             mean.setError("Enter mean");
@@ -117,7 +119,7 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
 
 
 
-                        dialog.dismiss();
+
 
                     }
                 });
