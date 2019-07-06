@@ -1,6 +1,7 @@
 package com.phuscduowng.lev3;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,12 +11,16 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +29,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.phuscduowng.lev3.listener.DictionaryAdapterListener;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -38,6 +46,8 @@ public class RecentFragment extends Fragment implements DictionaryAdapterListene
 
     DetailFragment detailFragment;
 
+    SwipeController swipeController = null;
+
 
     // Lấy toàn bộ dữ liệu trong Dictionary
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Dictionary");
@@ -48,6 +58,7 @@ public class RecentFragment extends Fragment implements DictionaryAdapterListene
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -83,10 +94,12 @@ public class RecentFragment extends Fragment implements DictionaryAdapterListene
         mData.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
+                final Dictionary dictionary = dataSnapshot.getValue(Dictionary.class);
                 if(dictionary.recent_word) {
                     recentList.add(dictionary);
                 }
+
+
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -144,6 +157,33 @@ public class RecentFragment extends Fragment implements DictionaryAdapterListene
 
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));  // Adding RecyclerView Divider / Separator
+
+
+
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+
+                mData.child(recentList.get(position).word).child("recent_word").setValue(false);
+
+                recentList.remove(position);
+
+                mAdapter.notifyItemRemoved(position);
+                mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount());
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
+
+
     }
 
 
@@ -168,7 +208,7 @@ public class RecentFragment extends Fragment implements DictionaryAdapterListene
         transaction.replace(R.id.container, fragment);
         if (!isTop)
             transaction.addToBackStack(null);
-//        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
         transaction.commit();
     }
 
@@ -180,6 +220,13 @@ public class RecentFragment extends Fragment implements DictionaryAdapterListene
                 recyclerView.getLayoutManager().scrollToPosition(i);
                 break;
             }
+        }
+    }
+
+    public void emptyFragment() {
+        if (recentList.isEmpty()) {
+            Fragment fragment = new EmptyFragment();
+            loadFragment(fragment, true);
         }
     }
 }

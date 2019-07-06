@@ -2,6 +2,7 @@ package com.phuscduowng.lev3;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
 
     DetailFragment detailFragment;
 
+    SwipeController swipeController = null;
 
     // Lấy toàn bộ dữ liệu trong Dictionary
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Dictionary");
@@ -101,11 +104,14 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
                             mData.child(word.getText().toString().toLowerCase()).child("detail").setValue(word.getText().toString().toLowerCase());
                             mData.child(word.getText().toString().toLowerCase()).child("ex").setValue("");
                             mData.child(word.getText().toString().toLowerCase()).child("favorite_word").setValue(false);
-                            mData.child(word.getText().toString().toLowerCase()).child("recent_word").setValue(true);
+                            mData.child(word.getText().toString().toLowerCase()).child("recent_word").setValue(false);
+                            mData.child(word.getText().toString().toLowerCase()).child("my_word").setValue(false);
                             mData.child(word.getText().toString().toLowerCase()).child("syn").setValue("");
                             mData.child(word.getText().toString().toLowerCase()).child("mean").setValue(pronun.getText().toString().toLowerCase());
                             mData.child(word.getText().toString().toLowerCase()).child("topic").setValue(value.toLowerCase());
-                            dialog.dismiss();
+
+                            Dictionary d = new Dictionary(word.getText().toString(), "", "", "", pronun.getText().toString(), mean.getText().toString(), "", value.toLowerCase(), false, false, false);
+                            topicChildList.add(d);
 
                             isAdded = true;
 
@@ -201,6 +207,32 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
         mAdapter = new RVAdapter(getActivity(), topicChildList);
         mAdapter.setListener(this);
         recyclerView.setAdapter(mAdapter);
+
+
+
+
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+
+                mData.child(topicChildList.get(position).word).removeValue();
+
+                topicChildList.remove(position);
+
+                mAdapter.notifyItemRemoved(position);
+                mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount());
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
 
 
     }

@@ -1,6 +1,8 @@
 package com.phuscduowng.lev3;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
@@ -30,6 +32,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,10 +42,14 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
     private List<Dictionary> dictionaryList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RVAdapter mAdapter;
-    private ImageView imgFavorite, imgPronun, menuRecent;
+    private ImageView imgFavorite, imgPronun, menuListDictionary;
     LottieAnimationView imgPronun2;
 
+    Button btnRecent, btnMemorized;
+
     DetailFragment detailFragment;
+
+    private Dialog dialog;
 
 
 
@@ -75,7 +82,7 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
         imgFavorite = view.findViewById(R.id.imgDictFavorite);
 //        imgPronun = view.findViewById(R.id.imgDictPronun);
         imgPronun2 = view.findViewById(R.id.imgDictPronun2);
-        menuRecent = view.findViewById(R.id.menuRecent);
+        menuListDictionary = view.findViewById(R.id.menuListDictionary);
 
 
         detailFragment = new DetailFragment();
@@ -145,11 +152,39 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
 
 
 
-        menuRecent.setOnClickListener(new View.OnClickListener() {
+        menuListDictionary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new RecentFragment();
-                loadFragment(fragment, true);
+
+                dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_dictionary);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.show();
+
+
+                btnRecent = dialog.findViewById(R.id.btnRecent);
+                btnMemorized = dialog.findViewById(R.id.btnMemorized);
+
+                btnRecent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment fragment = new RecentFragment();
+                        loadFragment(fragment, true);
+
+                        dialog.dismiss();
+                    }
+                });
+
+                btnMemorized.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment fragment = new MemorizedFragment();
+                        loadFragment(fragment, true);
+
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
 
@@ -206,6 +241,7 @@ public class DictionaryFragment extends Fragment implements DictionaryAdapterLis
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  //chuyển giữa các fragment đẹp hơn
         transaction.commit();
     }
+
 
 
     // Filter

@@ -117,8 +117,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
             });
 
 
-
-
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
