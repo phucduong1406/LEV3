@@ -318,8 +318,11 @@ public class TopicFragment extends Fragment {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                                     final Topic topic = dataSnapshot.getValue(Topic.class);
-                                    mData.child(topic.title).setValue(null);
-                                    Toast.makeText(getContext(), R.string.removed, Toast.LENGTH_SHORT).show();
+//                                    topicList.remove(position);
+
+                                    mData.child(topic.getTitle()).setValue(null);
+
+//                                    Toast.makeText(getContext(), R.string.removed + topic.getTitle() + topic.title, Toast.LENGTH_SHORT).show();
 
 //
 //                                    Fragment f = new TopicFragment();

@@ -99,15 +99,15 @@ public class TopicChildFragment extends Fragment implements DictionaryAdapterLis
 
                         if (!word.getText().toString().equals("") && !mean.getText().toString().equals("") && !pronun.getText().toString().equals("") ) {
                             mData.child(word.getText().toString().toLowerCase()).child("word").setValue(word.getText().toString().toLowerCase());
-                            mData.child(word.getText().toString().toLowerCase()).child("pronun").setValue(mean.getText().toString().toLowerCase());
-                            mData.child(word.getText().toString().toLowerCase()).child("def").setValue(word.getText().toString().toLowerCase());
-                            mData.child(word.getText().toString().toLowerCase()).child("detail").setValue(word.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("pronun").setValue(pronun.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("def").setValue("");
+                            mData.child(word.getText().toString().toLowerCase()).child("detail").setValue(mean.getText().toString().toLowerCase());
                             mData.child(word.getText().toString().toLowerCase()).child("ex").setValue("");
                             mData.child(word.getText().toString().toLowerCase()).child("favorite_word").setValue(false);
                             mData.child(word.getText().toString().toLowerCase()).child("recent_word").setValue(false);
                             mData.child(word.getText().toString().toLowerCase()).child("my_word").setValue(false);
                             mData.child(word.getText().toString().toLowerCase()).child("syn").setValue("");
-                            mData.child(word.getText().toString().toLowerCase()).child("mean").setValue(pronun.getText().toString().toLowerCase());
+                            mData.child(word.getText().toString().toLowerCase()).child("mean").setValue(mean.getText().toString().toLowerCase());
                             mData.child(word.getText().toString().toLowerCase()).child("topic").setValue(value.toLowerCase());
 
                             Dictionary d = new Dictionary(word.getText().toString(), "", "", "", pronun.getText().toString(), mean.getText().toString(), "", value.toLowerCase(), false, false, false);
